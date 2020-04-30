@@ -13,6 +13,6 @@ resource "aws_instance" "exam" {
   key_name      = var.key_pair
 
   tags = {
-    name = "exam"
+    Name = "exam"
   }
 }
