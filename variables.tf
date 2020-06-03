@@ -15,3 +15,11 @@ variable "inst_type" {
 variable "key_pair" {
   description = "key pair name"
 }
+
+variable "INSTANCE_USERNAME" {
+  description = "windows user"
+  }
+
+variable "INSTANCE_PASSWORD" {
+  description = "windows user password"
+  }
