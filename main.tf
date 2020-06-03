@@ -12,6 +12,7 @@ data “aws_ami” “Windows_2016” {
  name = “is-public”
  values = [“false”]
  }
+  
 filter {
  name = “name”
  values = [“windows2016Server*”]
