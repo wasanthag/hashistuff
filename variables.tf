@@ -23,3 +23,7 @@ variable "INSTANCE_USERNAME" {
 variable "INSTANCE_PASSWORD" {
   description = "windows user password"
   }
+
+variable "vpc_id" {
+  default = "vpc-bc944bc7"
+  }
