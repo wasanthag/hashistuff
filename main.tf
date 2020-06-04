@@ -43,11 +43,18 @@ resource "aws_security_group" "allow_rdp" {
   vpc_id      = data.aws_vpc.default.id
 
   ingress {
-    description = "Open RDP"
+    description = "Open RDP TCP"
     from_port   = 3389
     to_port     = 3389
     protocol    = "tcp"
-    cidr_blocks = [data.aws_vpc.default.cidr_block]
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  ingress {
+    description = "Open RDP UDP"
+    from_port   = 3389
+    to_port     = 3389
+    protocol    = "udp"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   egress {
