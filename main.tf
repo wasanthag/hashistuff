@@ -23,7 +23,7 @@ EOF
 
 data "aws_ami" "windows_2016" {
   most_recent = true
-  owners = ["aws"]
+  owners = ["amazon"]
   filter {
     name = "name"
     values = ["windows2016Server*"]
