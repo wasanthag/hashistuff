@@ -7,9 +7,9 @@ provider "aws" {
   version = "~> 2.54.0"
 }
 
-#data "aws_vpc" "default" {
-#  id = "${var.vpc_id}"
-#}
+data "aws_vpc" "default" {
+  id = "${var.vpc_id}"
+}
 
 data "template_file" "userdata_win" {
   template = <<EOF
@@ -47,7 +47,7 @@ resource "aws_security_group" "allow_rdp" {
     from_port   = 3389
     to_port     = 3389
     protocol    = "tcp"
-    cidr_blocks = aws_vpc.main.cidr_block
+    cidr_blocks = aws_vpc.default.cidr_block
   }
 
   egress {
