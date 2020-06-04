@@ -7,17 +7,6 @@ provider "aws" {
   version = "~> 2.54.0"
 }
 
-data “aws_ami” “Windows_2016” {
-  filter {
-  name = “is-public”
-  values = [“false”]
- }
-  filter {
-    name = “name”
-    values = [“windows2016Server*”]
- }
-  most_recent = true
-}
 
 data "template_file" "userdata_win" {
   template = <<EOF
