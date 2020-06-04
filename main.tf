@@ -7,6 +7,9 @@ provider "aws" {
   version = "~> 2.54.0"
 }
 
+#data "aws_vpc" "default" {
+#  id = "${var.vpc_id}"
+#}
 
 data "template_file" "userdata_win" {
   template = <<EOF
@@ -33,6 +36,31 @@ data "aws_ami" "windows_2016" {
     values = ["true"]
   }
   }
+
+resource "aws_security_group" "allow_rdp" {
+  name        = "allow_rdp"
+  description = "Allow RDP inbound traffic"
+  vpc_id      = "vpc-bc944bc7"
+
+  ingress {
+    description = "Open RDP"
+    from_port   = 3389
+    to_port     = 3389
+    protocol    = "tcp"
+    cidr_blocks = aws_vpc.main.cidr_block
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "allow_rdp"
+  }
+}
 
 resource "aws_instance" "tfec2" {
   ami = data.aws_ami.windows_2016.image_id
