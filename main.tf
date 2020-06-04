@@ -26,11 +26,11 @@ data "aws_ami" "windows_2016" {
   owners = ["amazon"]
   filter {
     name = "name"
-    values = ["windows2016Server*"]
+    values = ["Windows_Server-2016-English-Core-Base-*"]
     }
   filter {
     name = "is-public"
-    values = ["false"]
+    values = ["true"]
   }
   }
 
