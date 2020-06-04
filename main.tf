@@ -67,7 +67,8 @@ resource "aws_instance" "tfec2" {
   instance_type = var.inst_type
   key_name      = var.key_pair
   user_data = data.template_file.userdata_win.rendered
-  
+  vpc_security_group_ids = [aws_security_group.allow_rdp.id]
+
   tags = {
     Name = "TFCloud-VM"
   }
