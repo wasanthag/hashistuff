@@ -33,7 +33,7 @@ data "aws_ami" "windows_2016" {
   }
   }
 
-resource "aws_instance" "exam" {
+resource "aws_instance" "tfec2" {
   ami = "${data.aws_ami.windows_2016.image_id}"
   instance_type = var.inst_type
   key_name      = var.key_pair
