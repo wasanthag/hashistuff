@@ -35,7 +35,7 @@ data "aws_ami" "windows_2016" {
   }
 
 resource "aws_instance" "tfec2" {
-  ami = "${data.aws_ami.windows_2016.image_id}"
+  ami = data.aws_ami.windows_2016.image_id
   instance_type = var.inst_type
   key_name      = var.key_pair
   user_data = data.template_file.userdata_win.rendered
