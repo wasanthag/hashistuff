@@ -31,6 +31,7 @@ data "aws_ami" "windows_2016" {
     name = "is-public"
     values = ["false"]
   }
+  }
 
 resource "aws_instance" "exam" {
   ami = "${data.aws_ami.windows_2016.image_id}"
