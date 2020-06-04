@@ -47,7 +47,7 @@ resource "aws_security_group" "allow_rdp" {
     from_port   = 3389
     to_port     = 3389
     protocol    = "tcp"
-    cidr_blocks = data.aws_vpc.default.cidr_block
+    cidr_blocks = [data.aws_vpc.default.cidr_block]
   }
 
   egress {
