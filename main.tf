@@ -21,18 +21,23 @@ echo "" > _INIT_COMPLETE_
 EOF
 }
 
+data "aws_ami" "windows_2016" {
+  most_recent = true
+  filter {
+    name = "name"
+    values = ["windows2016Server*"]
+    }
+  filter {
+    name = "is-public"
+    values = ["false"]
+  }
+
 resource "aws_instance" "exam" {
   ami           = “${data.aws_ami.Windows_2016.image_id}”
   instance_type = var.inst_type
   key_name      = var.key_pair
   user_data = data.template_file.userdata_win.rendered
-
-  root_block_device {
-    volume_type = “ebs”
-    volume_size = 50
-    delete_on_termination = “true”
- }
-
+  
   tags = {
     Name = "TFCloud-VM"
   }
